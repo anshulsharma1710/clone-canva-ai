@@ -14,8 +14,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Image AI",
-  description: "Create your own design with image-ai",
+  title: "Image-AI",
+  description: "AI powered image-ai. Convert your design into reality.",
 };
 
 export default async function RootLayout({

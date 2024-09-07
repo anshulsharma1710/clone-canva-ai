@@ -129,7 +129,6 @@ export const createFilter = (value: string) => {
       effect = new fabric.Image.filters.Gamma({
         gamma: [1, 0.5, 2.1]
       });
-      break;
     case "saturation":
       effect = new fabric.Image.filters.Saturation({
         saturation: 0.7,

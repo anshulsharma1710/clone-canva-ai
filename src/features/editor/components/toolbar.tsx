@@ -6,7 +6,7 @@ import {
   FaStrikethrough, 
   FaUnderline
 } from "react-icons/fa";
-import { TbColorFilter, TbMovie } from "react-icons/tb";
+import { TbColorFilter } from "react-icons/tb";
 import { BsBorderWidth } from "react-icons/bs";
 import { RxTransparencyGrid } from "react-icons/rx";
 import { 
@@ -407,18 +407,6 @@ export const Toolbar = ({
             variant="ghost"
           >
             <ArrowDown className="size-4" />
-          </Button>
-        </Hint>
-      </div>
-      <div className="flex items-center h-full justify-center">
-        <Hint label="Animation" side="bottom" sideOffset={5}>
-          <Button
-            onClick={() => onChangeActiveTool("animation")}
-            size="icon"
-            variant="ghost"
-            className={cn(activeTool === "animation" && "bg-gray-100")}
-          >
-            <TbMovie className="size-4" />
           </Button>
         </Hint>
       </div>

@@ -1,9 +1,12 @@
 "use client";
+
 import { fabric } from "fabric";
 import debounce from "lodash.debounce";
 import { useCallback, useEffect, useRef, useState } from "react";
+
 import { ResponseType } from "@/features/projects/api/use-get-project";
 import { useUpdateProject } from "@/features/projects/api/use-update-project";
+
 import { 
   ActiveTool, 
   selectionDependentTools
@@ -27,13 +30,14 @@ import { AiSidebar } from "@/features/editor/components/ai-sidebar";
 import { TemplateSidebar } from "@/features/editor/components/template-sidebar";
 import { RemoveBgSidebar } from "@/features/editor/components/remove-bg-sidebar";
 import { SettingsSidebar } from "@/features/editor/components/settings-sidebar";
-import { AnimationSidebar } from "@/features/editor/components/animation-sidebar";
 
 interface EditorProps {
   initialData: ResponseType["data"];
 };
+
 export const Editor = ({ initialData }: EditorProps) => {
   const { mutate } = useUpdateProject(initialData.id);
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSave = useCallback(
     debounce(
@@ -46,12 +50,15 @@ export const Editor = ({ initialData }: EditorProps) => {
     },
     500
   ), [mutate]);
+
   const [activeTool, setActiveTool] = useState<ActiveTool>("select");
+
   const onClearSelection = useCallback(() => {
     if (selectionDependentTools.includes(activeTool)) {
       setActiveTool("select");
     }
   }, [activeTool]);
+
   const { init, editor } = useEditor({
     defaultState: initialData.json,
     defaultWidth: initialData.width,
@@ -59,34 +66,42 @@ export const Editor = ({ initialData }: EditorProps) => {
     clearSelectionCallback: onClearSelection,
     saveCallback: debouncedSave,
   });
+
   const onChangeActiveTool = useCallback((tool: ActiveTool) => {
     if (tool === "draw") {
       editor?.enableDrawingMode();
     }
+
     if (activeTool === "draw") {
       editor?.disableDrawingMode();
     }
+
     if (tool === activeTool) {
       return setActiveTool("select");
     }
     
     setActiveTool(tool);
   }, [activeTool, editor]);
+
   const canvasRef = useRef(null);
   const containerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const canvas = new fabric.Canvas(canvasRef.current, {
       controlsAboveOverlay: true,
       preserveObjectStacking: true,
     });
+
     init({
       initialCanvas: canvas,
       initialContainer: containerRef.current!,
     });
+
     return () => {
       canvas.dispose();
     };
   }, [init]);
+
   return (
     <div className="h-full flex flex-col">
       <Navbar
@@ -121,11 +136,6 @@ export const Editor = ({ initialData }: EditorProps) => {
           onChangeActiveTool={onChangeActiveTool}
         />
         <OpacitySidebar
-          editor={editor}
-          activeTool={activeTool}
-          onChangeActiveTool={onChangeActiveTool}
-        />
-        <AnimationSidebar
           editor={editor}
           activeTool={activeTool}
           onChangeActiveTool={onChangeActiveTool}

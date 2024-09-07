@@ -1,6 +1,6 @@
 {
-  "id": "62f44af7-54b7-4a5f-bf2d-eb85921b3e2c",
-  "prevId": "33f5012d-1325-4a94-a781-6179013a7aec",
+  "id": "0502fbee-ac60-4c9c-bb3b-49df5df42b73",
+  "prevId": "c2f36e4e-80dc-40c0-8404-96b29faaa492",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -252,7 +252,7 @@
           "name": "email",
           "type": "text",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "emailVerified": {
           "name": "emailVerified",
@@ -276,15 +276,7 @@
       "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "user_email_unique": {
-          "name": "user_email_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "email"
-          ]
-        }
-      }
+      "uniqueConstraints": {}
     },
     "public.verificationToken": {
       "name": "verificationToken",
@@ -325,7 +317,6 @@
   },
   "enums": {},
   "schemas": {},
-  "sequences": {},
   "_meta": {
     "columns": {},
     "schemas": {},

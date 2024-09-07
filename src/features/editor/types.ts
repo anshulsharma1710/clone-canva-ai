@@ -2,17 +2,6 @@ import { fabric } from "fabric";
 import { ITextboxOptions } from "fabric/fabric-impl";
 import * as material from "material-colors";
 
-export const animations = [
-  "fadeIn",
-  "fadeOut",
-  "slideIn",
-  "slideOut",
-  "scaleUp",
-  "scaleDown",
-  "rotate",
-  "none",
-];
-
 export const JSON_KEYS = [
   "name",
   "gradientAngle",
@@ -76,7 +65,6 @@ export const selectionDependentTools = [
   "font",
   "filter",
   "opacity",
-  "animation",
   "remove-bg",
   "stroke-color",
   "stroke-width",
@@ -115,7 +103,6 @@ export type ActiveTool =
   | "stroke-width"
   | "font"
   | "opacity"
-  | "animation"
   | "filter"
   | "settings"
   | "ai"
@@ -129,7 +116,6 @@ export const STROKE_DASH_ARRAY = [];
 export const FONT_FAMILY = "Arial";
 export const FONT_SIZE = 32;
 export const FONT_WEIGHT = 400;
-export const ANIMATION_TYPE = null;
 
 export const CIRCLE_OPTIONS = {
   radius: 225,
@@ -211,12 +197,10 @@ export type BuildEditorProps = {
   strokeDashArray: number[];
   fontFamily: string;
   setStrokeDashArray: (value: number[]) => void;
-  animation: string;
   setFillColor: (value: string) => void;
   setStrokeColor: (value: string) => void;
   setStrokeWidth: (value: number) => void;
   setFontFamily: (value: string) => void;
-  setAnimation: (value: string) => void;
 };
 
 export interface Editor {
@@ -253,15 +237,12 @@ export interface Editor {
   changeFontStyle: (value: string) => void;
   getActiveFontStyle: () => string;
   changeFontWeight: (value: number) => void;
-  changeAnimation: (value: string) => void;
   getActiveFontWeight: () => number;
   getActiveFontFamily: () => string;
   changeFontFamily: (value: string) => void;
   addText: (value: string, options?: ITextboxOptions) => void;
-  getActiveAnimation: () => string;
   getActiveOpacity: () => number;
   changeOpacity: (value: number) => void;
-  changeAnimationType: (value: string) => void;
   bringForward: () => void;
   sendBackwards: () => void;
   changeStrokeWidth: (value: number) => void;

@@ -1,4 +1,5 @@
 "use client";
+
 import { 
   LayoutTemplate,
   ImageIcon,
@@ -11,12 +12,12 @@ import {
 
 import { ActiveTool } from "@/features/editor/types";
 import { SidebarItem } from "@/features/editor/components/sidebar-item";
-import { TbMovie } from "react-icons/tb";
 
 interface SidebarProps {
   activeTool: ActiveTool;
   onChangeActiveTool: (tool: ActiveTool) => void;
 };
+
 export const Sidebar = ({
   activeTool,
   onChangeActiveTool,
